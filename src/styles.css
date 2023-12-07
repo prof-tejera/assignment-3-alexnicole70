@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap");
+
+:root {
+  --color-white: #ffffff;
+  --color-dark-blue: #0292ac;
+  --color-bright-blue: #6accde;
+  --color-pale-blue: #d6eaee;
+  --color-light-grey: #e1e1e1;
+  --color-medium-grey: #999999;
+  --color-dark-grey: #2c2c2c;
+}
+
+body {
+  background-color: var(--color-dark-blue);
+}
+
+.text-h1 {
+  font-family: Plus Jakarta Sans;
+  font-size: 4.5rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 4rem; /* 88.889% */
+  color: var(--color-white);
+  margin: 1rem;
+}
+
+.text-h2 {
+  font-family: Plus Jakarta Sans;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 2.5rem; /* 83.333% */
+  color: var(--color-white);
+}
+
+.text-h3 {
+  font-family: Plus Jakarta Sans;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2rem; /* 100% */
+  color: var(--color-white);
+}
+
+.text-p-large {
+  font-family: Plus Jakarta Sans;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 100% */
+  color: var(--color-white);
+}
+
+.text-p {
+  font-family: Plus Jakarta Sans;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.125rem; /* 112.5% */
+  color: var(--color-white);
+}
+
+.text-label {
+  font-family: Plus Jakarta Sans;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.125rem; /* 112.5% */
+  color: var(--color-white);
+}
+
+.text-p-small {
+  font-family: Plus Jakarta Sans;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem; /* 133.333% */
+  color: var(--color-white);
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.button-collection {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.timer-container {
+  padding-bottom: 120px;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.link-container a {
+  margin: 0 auto;
+}
+
+.add-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-bottom: 6rem;
+  align-items: center;
+}
+
+.timer-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.timer-info {
+  margin-bottom: 4rem;
+}
+
+.nav-bar-list {
+  height: 1rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  /* justify-content: center;
+  padding-right: 2rem; */
+}
+
+.nav-bar {
+  margin-bottom: 4rem;
+}
+
+.nav-bar-list a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-bar-list a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-bar-list a:active {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-bar-list a:hover {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+.nav-bar-list a.active {
+  font-weight: 600;
+}
+
+div.main-content {
+  height: calc(100vh - 6rem - 4.875rem);
+}
+
+.start-workout-desc {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.start-workout-desc a {
+  margin: 0 auto;
+}
+
+.workout-complete-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.eat-cake-wrapper {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.eat-cake-wrapper p {
+  padding: 0;
+  margin: 0;
+}
+.timer-container.type-edit {
+  padding-bottom: 4rem;
+}
+.timer-container.type-edit h3 {
+  color: var(--color-dark-grey);
+}
+
+.timer-container.type-edit label {
+  color: var(--color-dark-grey);
+}
+.timer-container.type-edit .text-p-large {
+  color: var(--color-dark-grey);
+}
+
+.timer-container.type-edit input {
+  border-color: var(--color-medium-grey);
+}
+
+.timer-container.type-edit input:focus {
+  border-color: var(--color-medium-grey);
+}
+
+.edit-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.edit-buttons .link-button {
+  width: 15rem;
+  max-width: 15rem;
+}
+
+.edit-buttons a {
+  margin: 0;
+}

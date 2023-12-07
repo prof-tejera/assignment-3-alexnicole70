@@ -1,0 +1,42 @@
+.queue-counter-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 7.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--color-pale-blue);
+}
+
+.view-queue-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.queue-counter-no {
+  display: flex;
+  width: 1.5rem;
+  height: 1.4375rem;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  color: var(--color-dark-blue) !important;
+  text-align: center;
+}
+
+.view-queue-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.view-workout-queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}

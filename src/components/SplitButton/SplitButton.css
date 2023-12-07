@@ -1,0 +1,10 @@
+svg.split-btn:hover circle {
+  fill: var(--color-bright-blue);
+  cursor: pointer;
+}
+
+svg.split-btn:active circle {
+  fill: var(--color-bright-blue);
+  stroke: var(--color-bright-blue);
+  cursor: pointer;
+}
