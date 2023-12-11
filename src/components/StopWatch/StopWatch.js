@@ -9,7 +9,7 @@ import { AppContext } from "../../AppContext";
 import TimeInput from "../TimeInput/TimeInput";
 import RoundDisplay from "../RoundDisplay/RoundDisplay";
 
-export default function StopWatch({ maxTime, onSpent }) {
+export default function StopWatch({ maxTime, onSpent, description }) {
   const [timePassed, setTimePassed] = useState(0);
   const intervalId = useRef();
   const [running, setRunning] = useState(false);
@@ -81,6 +81,7 @@ export default function StopWatch({ maxTime, onSpent }) {
   }, [currentTimer, timePassed]);
   return (
     <div className="StopWatch">
+      <p className="text-p">{description}</p>
       <TimeDisplay time={timePassed} />
       <RoundDisplay maxTime={maxTime} />
       <div className="button-collection">

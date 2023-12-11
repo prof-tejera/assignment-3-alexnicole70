@@ -1,9 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useCallback, useRef } from "react";
+import update from "immutability-helper";
+
 import "./ViewQueue.css";
 import { AppContext } from "../../AppContext";
 import AddButton from "../AddButton/AddButton";
 import QueueCard from "../QueueCard/QueueCard";
 import EditModal from "../EditModal/EditModal";
+
 
 const QueueCounter = () => {
   const { timerQueue } = useContext(AppContext);
@@ -46,6 +49,26 @@ const ViewQueue = ({ onClick, children }) => {
   const { timerQueue, setTimerQueue, currentTimer } = useContext(AppContext);
   const [modalOpened, setModalOpened] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
+  // Using the example from react-dnd (https://react-dnd.github.io/react-dnd/examples/sortable/simple)
+  const moveCard = useCallback((dragIndex, hoverIndex) => {
+    console.log(dragIndex, hoverIndex);
+    setTimerQueue((prevCards) =>
+      // timerQueue
+      // update so that the current drag index card +1
+      // hover index cards - 1
+
+      // for example, if the current card is 2, dragged on top of 3.
+      // then 3 becomes card 2; and 2 becomes card 3.
+
+      update(prevCards, {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, prevCards[dragIndex]],
+        ],
+      })
+    );
+  }, []);
+
 
   return (
     <div>
@@ -64,34 +87,30 @@ const ViewQueue = ({ onClick, children }) => {
       <div className="view-workout-queue-list">
         {timerQueue.map((timer, cardIndex) => {
           return (
-            // <AddButton
-            //   key={cardIndex}
-            //   type="remove"
-            //   text={
-            //     cardIndex === currentTimer
-            //       ? `>> ${timer.timerType}`
-            //       : timer.timerType
-            //   }
-            //   onClick={}
-            // />
-            <QueueCard
-              timerType={
-                cardIndex === currentTimer
-                  ? `>> ${timer.timerType}`
-                  : timer.timerType
-              }
-              timerSettings={timer.props}
-              deleteTimer={() => {
-                setTimerQueue((v) =>
-                  // Create a new queue that doesn't have our current timer
-                  v.filter((vv, queueIndex) => cardIndex !== queueIndex),
-                );
-              }}
-              editTimer={() => {
-                setEditIndex(cardIndex);
-                setModalOpened(true);
-              }}
-            />
+            <div key={cardIndex} >
+              <QueueCard
+                id={timer.id}
+                moveCard={moveCard}
+                cardIndex = {cardIndex}
+
+                timerType={
+                  cardIndex === currentTimer
+                    ? `>> ${timer.timerType}`
+                    : timer.timerType
+                }
+                timerSettings={timer.props}
+                deleteTimer={() => {
+                  setTimerQueue((v) =>
+                    // Create a new queue that doesn't have our current timer
+                    v.filter((vv, queueIndex) => cardIndex !== queueIndex)
+                  );
+                }}
+                editTimer={() => {
+                  setEditIndex(cardIndex);
+                  setModalOpened(true);
+                }}
+              />
+            </div>
           );
         })}
       </div>

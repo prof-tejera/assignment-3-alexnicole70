@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import "./styles.css";
 import { AppContext } from "./AppContext";
-
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import Countdown, {
   AddCountdownInput,
 } from "./components/Countdown/Countdown.js";
@@ -25,6 +26,7 @@ import TimerInfo from "./components/TimerInfo/TimerInfo";
 import { SquareButton } from "./components/SquareButton/SquareButton";
 import QueueCard from "./components/QueueCard/QueueCard";
 import { useSearchParams } from "react-router-dom";
+import { AddInputPanel } from "./components/AddInputPanel/AddInputPanel.js";
 
 const MainPage = () => {
   const { timerQueue, setTimerQueue, setCurrentTimer, currentTimer } =
@@ -117,36 +119,16 @@ const MainPage = () => {
               .map((timer, ix) => {
                 if (timer.timerType === "Countdown") {
                   return (
-                    <Countdown
-                      key={Math.random()}
-                      {...timer.props}
-                      onSpent={handleSpentTimer}
-                    />
+                    <Countdown key={timer.id} {...timer.props} onSpent={handleSpentTimer} />
                   );
                 } else if (timer.timerType === "Stopwatch") {
                   return (
-                    <StopWatch
-                      key={Math.random()}
-                      {...timer.props}
-                      onSpent={handleSpentTimer}
-                    />
+                    <StopWatch key={timer.id}  {...timer.props} onSpent={handleSpentTimer} />
                   );
                 } else if (timer.timerType === "XY") {
-                  return (
-                    <XY
-                      key={Math.random()}
-                      {...timer.props}
-                      onSpent={handleSpentTimer}
-                    />
-                  );
+                  return <XY  key={timer.id}  {...timer.props} onSpent={handleSpentTimer} />;
                 } else if (timer.timerType === "TABATA") {
-                  return (
-                    <Tabata
-                      key={Math.random()}
-                      {...timer.props}
-                      onSpent={handleSpentTimer}
-                    />
-                  );
+                  return <Tabata key={timer.id}  {...timer.props} onSpent={handleSpentTimer} />;
                 }
               })}
           </div>
@@ -181,19 +163,20 @@ const AddTimerPage = () => {
     }
   }, [timerQueue]);
 
+  const handleSetTimerConfig = (timerConfig) => {
+    // The Add Panel will give us the new timerConfig of the one user just created
+    // We gonna add this to the queue
+    setTimerQueue((v) => [...v, timerConfig]);
+  };
+
   const showTimer = () => {
-    switch (timerType) {
-      case "TABATA":
-        return <AddTabataInput key={"TABATA"} />;
-      case "XY":
-        return <AddXYInput key={"XY"} />;
-      case "Countdown":
-        return <AddCountdownInput key={"Countdown"} />;
-      case "Stopwatch":
-        return <AddStopwatchInput key={"Stopwatch"} />;
-      default:
-        return <></>;
-    }
+    return (
+      <AddInputPanel
+        key={timerType}
+        timerType={timerType}
+        setTimerConfig={handleSetTimerConfig}
+      />
+    );
   };
   return (
     <div>
@@ -240,12 +223,10 @@ const TestPage = () => {
 
   return (
     <div>
-      {/* <LinkButton text="Save" onClick={saveTimers} /> */}
-      <p>{JSON.stringify(_test1)}</p>
-
-      <QueueCard />
-
-      <ViewQueue />
+      <AddInputPanel timerType="TABATA" />
+      <AddInputPanel timerType="XY" />
+      <AddInputPanel timerType="Stopwatch" />
+      <AddInputPanel timerType="Countdown" />
     </div>
   );
 };
@@ -256,35 +237,37 @@ export default function App() {
   const [currentTimer, setCurrentTimer] = useState(0);
 
   return (
-    <AppContext.Provider
-      value={{
-        timerQueue: timerQueue,
-        setTimerQueue: setTimerQueue,
-        currentTimer: currentTimer,
-        setCurrentTimer: setCurrentTimer,
-      }}
-    >
-      <Router>
-        <div className="nav-bar">
-          <ul className="nav-bar-list text-p">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/add">Add Timer</Link>
-            </li>
-            <li>
-              <Link to="/test">Test</Link>
-            </li>
-          </ul>
-        </div>
+    <DndProvider backend={HTML5Backend}>
+      <AppContext.Provider
+        value={{
+          timerQueue: timerQueue,
+          setTimerQueue: setTimerQueue,
+          currentTimer: currentTimer,
+          setCurrentTimer: setCurrentTimer,
+        }}
+      >
+        <Router>
+          <div className="nav-bar">
+            <ul className="nav-bar-list text-p">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/add">Add Timer</Link>
+              </li>
+              <li>
+                <Link to="/test">Test</Link>
+              </li>
+            </ul>
+          </div>
 
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/test" element={<TestPage />} />
-          <Route path="/add" element={<AddTimerPage />} />
-        </Routes>
-      </Router>
-    </AppContext.Provider>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/test" element={<TestPage />} />
+            <Route path="/add" element={<AddTimerPage />} />
+          </Routes>
+        </Router>
+      </AppContext.Provider>
+    </DndProvider>
   );
 }

@@ -2,10 +2,7 @@ import { useState, useContext } from "react";
 import "./EditModal.css";
 import { AppContext } from "../../AppContext";
 
-import { AddCountdownInput } from "../Countdown/Countdown";
-import { AddStopwatchInput } from "../StopWatch/StopWatch";
-import { AddXYInput } from "../XY/XY";
-import { AddTabataInput } from "../TABATA/TABATA";
+import { EditInputPanel } from "../AddInputPanel/AddInputPanel";
 
 import Modal from "react-modal";
 import SquareButton from "../SquareButton/SquareButton";
@@ -114,7 +111,13 @@ const EditModal = ({ modalOpened, closeModal, timerIndex }) => {
       }}
     >
       {timer && (
-        <div style={{ textAlign: "center" }}>{showTimer(timer.timerType)}</div>
+        <div style={{ textAlign: "center" }}>
+          <EditInputPanel
+            timerConfig={timer}
+            setTimerConfig={handleSaveTimer}
+            closeModal={closeModal}
+          />
+        </div>
       )}
     </Modal>
   );

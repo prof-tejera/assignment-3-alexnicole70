@@ -8,8 +8,9 @@ import PlayPauseButton from "../PlayPauseButton/PlayPauseButton";
 import LinkButton from "../LinkButton/LinkButton";
 import { AppContext } from "../../AppContext";
 import RoundDisplay from "../RoundDisplay/RoundDisplay";
+import TextInput from "../TextInput/TextInput";
 
-export default function Countdown({ inputTime, onSpent }) {
+export default function Countdown({ inputTime, description, onSpent }) {
   const [remainingTime, setRemainingTime] = useState(inputTime);
   const intervalId = useRef();
   const [running, setRunning] = useState(false);
@@ -83,6 +84,8 @@ export default function Countdown({ inputTime, onSpent }) {
 
   return (
     <div className="Countdown">
+      <p className="text-p">{description}</p>
+
       <TimeDisplay time={remainingTime} />
       <RoundDisplay inputTime={inputTime} />
       <div className="button-collection">
@@ -117,10 +120,12 @@ export const CountdownWithUserInput = () => {
 export const AddCountdownInput = ({ type = "add", saveTimer, backButton }) => {
   const [inputTime, setInputTime] = useState(30);
   const { setTimerQueue } = useContext(AppContext);
+  const [description, setDescription]=useState("");
 
   return (
     <div className={`timer-container type-${type}`}>
       <h3 className="text-h3">Countdown</h3>
+      <TextInput setText={setDescription}/>
       <div className="input-wrapper">
         <TimeInput setInputTime={setInputTime} />
       </div>
@@ -135,6 +140,7 @@ export const AddCountdownInput = ({ type = "add", saveTimer, backButton }) => {
                   timerType: "Countdown",
                   props: {
                     inputTime: inputTime,
+                    description:description
                   },
                 },
               ]);
@@ -151,6 +157,7 @@ export const AddCountdownInput = ({ type = "add", saveTimer, backButton }) => {
                   timerType: "Countdown",
                   props: {
                     inputTime: inputTime,
+                    description:description
                   },
                 });
               }}

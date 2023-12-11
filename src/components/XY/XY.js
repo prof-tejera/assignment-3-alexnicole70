@@ -14,7 +14,7 @@ import RoundDisplay from "../RoundDisplay/RoundDisplay";
 import LinkButton from "../LinkButton/LinkButton";
 import { AppContext } from "../../AppContext";
 
-export default function XY({ inputTime, rounds, onSpent }) {
+export default function XY({ inputTime, rounds, description, onSpent }) {
   const [remainingTime, setRemainingTime] = useState(inputTime);
   const [currentRound, setCurrentRound] = useState(1);
   const intervalId = useRef();
@@ -110,6 +110,7 @@ export default function XY({ inputTime, rounds, onSpent }) {
 
   return (
     <div className="XY">
+      <p className="text-p">{description}</p>
       <TimeDisplay time={remainingTime} />
 
       <RoundDisplay

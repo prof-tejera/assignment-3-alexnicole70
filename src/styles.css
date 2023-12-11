@@ -210,6 +210,13 @@ div.main-content {
 .timer-container.type-edit label {
   color: var(--color-dark-grey);
 }
+.timer-container.type-edit input {
+  color: var(--color-dark-grey);
+}
+
+.timer-container.type-edit input::placeholder {
+  color: var(--color-medium-grey);
+}
 .timer-container.type-edit .text-p-large {
   color: var(--color-dark-grey);
 }

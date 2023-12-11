@@ -15,6 +15,7 @@ export default function Tabata({
   workInterval,
   restInterval,
   rounds,
+  description,
   onSpent,
 }) {
   const [remainingTime, setRemainingTime] = useState(workInterval);
@@ -125,6 +126,7 @@ export default function Tabata({
 
   return (
     <div className="Tabata">
+      <p className="text-p">{description}</p>
       <TimeDisplay time={remainingTime} />
       <RoundDisplay
         currentRound={currentRound}
