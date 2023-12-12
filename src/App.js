@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState, useContext } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
 import "./styles.css";
 import { AppContext } from "./AppContext";
 import { DndProvider } from "react-dnd";
@@ -119,16 +121,36 @@ const MainPage = () => {
               .map((timer, ix) => {
                 if (timer.timerType === "Countdown") {
                   return (
-                    <Countdown key={timer.id} {...timer.props} onSpent={handleSpentTimer} />
+                    <Countdown
+                      key={timer.id}
+                      {...timer.props}
+                      onSpent={handleSpentTimer}
+                    />
                   );
                 } else if (timer.timerType === "Stopwatch") {
                   return (
-                    <StopWatch key={timer.id}  {...timer.props} onSpent={handleSpentTimer} />
+                    <StopWatch
+                      key={timer.id}
+                      {...timer.props}
+                      onSpent={handleSpentTimer}
+                    />
                   );
                 } else if (timer.timerType === "XY") {
-                  return <XY  key={timer.id}  {...timer.props} onSpent={handleSpentTimer} />;
+                  return (
+                    <XY
+                      key={timer.id}
+                      {...timer.props}
+                      onSpent={handleSpentTimer}
+                    />
+                  );
                 } else if (timer.timerType === "TABATA") {
-                  return <Tabata key={timer.id}  {...timer.props} onSpent={handleSpentTimer} />;
+                  return (
+                    <Tabata
+                      key={timer.id}
+                      {...timer.props}
+                      onSpent={handleSpentTimer}
+                    />
+                  );
                 }
               })}
           </div>
@@ -220,14 +242,29 @@ const TestPage = () => {
   const { timerQueue, setTimerQueue } = useContext(AppContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const _test1 = Object.fromEntries(searchParams);
-
+  const [error, setError] = useState(false);
+  const renderError = () =>  {
+    if (error) {
+      throw new Error("blah blah") 
+    } 
+    else {
+      return ""
+    }
+  }
   return (
-    <div>
-      <AddInputPanel timerType="TABATA" />
-      <AddInputPanel timerType="XY" />
-      <AddInputPanel timerType="Stopwatch" />
-      <AddInputPanel timerType="Countdown" />
-    </div>
+    
+      <div>
+        <SquareButton
+          text="Error me"
+        onClick={() => setError((v) => !v)}
+        />
+        {error && renderError()}
+        <AddInputPanel timerType="TABATA" />
+        <AddInputPanel timerType="XY" />
+        <AddInputPanel timerType="Stopwatch" />
+        <AddInputPanel timerType="Countdown" />
+      </div>
+
   );
 };
 
@@ -237,6 +274,7 @@ export default function App() {
   const [currentTimer, setCurrentTimer] = useState(0);
 
   return (
+    
     <DndProvider backend={HTML5Backend}>
       <AppContext.Provider
         value={{
@@ -269,5 +307,6 @@ export default function App() {
         </Router>
       </AppContext.Provider>
     </DndProvider>
+
   );
 }
