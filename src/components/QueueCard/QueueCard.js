@@ -107,10 +107,10 @@ const QueueCard = ({
   return (
     <div className="queue-card-wrapper" ref={ref} data-handler-id={handlerId}>
       <div className="queue-card-container"  >
-        <div className="queue-card-icon">
+        <div className="queue-card-icon" >
           <HandleIcon />
         </div>
-        <div className="queue-card-content">
+        <div className="queue-card-content" >
           <div className="text-p">{timerType}</div>
           <div className="queue-card-customizations text-p-small">
             <div>

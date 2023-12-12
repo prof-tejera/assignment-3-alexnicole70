@@ -51,7 +51,10 @@ const ViewQueue = ({ onClick, children }) => {
   const [editIndex, setEditIndex] = useState(null);
   // Using the example from react-dnd (https://react-dnd.github.io/react-dnd/examples/sortable/simple)
   const moveCard = useCallback((dragIndex, hoverIndex) => {
-    console.log(dragIndex, hoverIndex);
+    // What happen when a card moves. 
+    // When a card "hovers" on top of another card (can only be before / after the current card)
+
+    // console.log(dragIndex, hoverIndex);
     setTimerQueue((prevCards) =>
       // timerQueue
       // update so that the current drag index card +1
