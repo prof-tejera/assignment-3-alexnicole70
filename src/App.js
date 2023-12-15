@@ -274,7 +274,7 @@ export default function App() {
   const [currentTimer, setCurrentTimer] = useState(0);
 
   return (
-    
+    <ErrorBoundary fallback={<div className="text-p-large">Something went wrong!</div>}>
     <DndProvider backend={HTML5Backend}>
       <AppContext.Provider
         value={{
@@ -307,6 +307,6 @@ export default function App() {
         </Router>
       </AppContext.Provider>
     </DndProvider>
-
+    </ErrorBoundary>
   );
 }
