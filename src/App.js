@@ -238,75 +238,43 @@ const AddTimerPage = () => {
   );
 };
 
-const TestPage = () => {
-  const { timerQueue, setTimerQueue } = useContext(AppContext);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const _test1 = Object.fromEntries(searchParams);
-  const [error, setError] = useState(false);
-  const renderError = () =>  {
-    if (error) {
-      throw new Error("blah blah") 
-    } 
-    else {
-      return ""
-    }
-  }
-  return (
-    
-      <div>
-        <SquareButton
-          text="Error me"
-        onClick={() => setError((v) => !v)}
-        />
-        {error && renderError()}
-        <AddInputPanel timerType="TABATA" />
-        <AddInputPanel timerType="XY" />
-        <AddInputPanel timerType="Stopwatch" />
-        <AddInputPanel timerType="Countdown" />
-      </div>
-
-  );
-};
-
 export default function App() {
   // const [searchParams, setSearchParams] = useSearchParams();
   const [timerQueue, setTimerQueue] = useState([]);
   const [currentTimer, setCurrentTimer] = useState(0);
 
   return (
-    <ErrorBoundary fallback={<div className="text-p-large">Something went wrong!</div>}>
-    <DndProvider backend={HTML5Backend}>
-      <AppContext.Provider
-        value={{
-          timerQueue: timerQueue,
-          setTimerQueue: setTimerQueue,
-          currentTimer: currentTimer,
-          setCurrentTimer: setCurrentTimer,
-        }}
-      >
-        <Router>
-          <div className="nav-bar">
-            <ul className="nav-bar-list text-p">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/add">Add Timer</Link>
-              </li>
-              <li>
-                <Link to="/test">Test</Link>
-              </li>
-            </ul>
-          </div>
+    <ErrorBoundary
+      fallback={<div className="text-p-large">Something went wrong!</div>}
+    >
+      <DndProvider backend={HTML5Backend}>
+        <AppContext.Provider
+          value={{
+            timerQueue: timerQueue,
+            setTimerQueue: setTimerQueue,
+            currentTimer: currentTimer,
+            setCurrentTimer: setCurrentTimer,
+          }}
+        >
+          <Router>
+            <div className="nav-bar">
+              <ul className="nav-bar-list text-p">
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/add">Add Timer</Link>
+                </li>
+              </ul>
+            </div>
 
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/test" element={<TestPage />} />
-            <Route path="/add" element={<AddTimerPage />} />
-          </Routes>
-        </Router>
-      </AppContext.Provider>
-    </DndProvider>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/add" element={<AddTimerPage />} />
+            </Routes>
+          </Router>
+        </AppContext.Provider>
+      </DndProvider>
     </ErrorBoundary>
   );
 }
