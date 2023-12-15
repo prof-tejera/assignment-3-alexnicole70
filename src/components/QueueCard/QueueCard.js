@@ -110,7 +110,7 @@ const QueueCard = ({
         <div className="queue-card-content">
           <div className="text-p">{timerType}</div>
           <div className="queue-card-customizations text-p-small">
-            <div>
+            <div className="queue-card-configs">
               {timerSettings &&
                 Object.keys(timerSettings)
                   .filter((k) => Object.keys(TIMER_SETTINGS_NAMES).includes(k))
@@ -124,12 +124,14 @@ const QueueCard = ({
                       </span>
                     </div>
                   ))}
-              {timerSettings &&
-                Object.keys(timerSettings).includes("description") &&
-                timerSettings["description"] && (
-                  <div>Description: {timerSettings["description"]}</div>
-                )}
             </div>
+            {timerSettings &&
+              Object.keys(timerSettings).includes("description") &&
+              timerSettings["description"] && (
+                <div className="queue-card-descriptions">
+                  Description: {timerSettings["description"]}
+                </div>
+              )}
           </div>
         </div>
       </div>
