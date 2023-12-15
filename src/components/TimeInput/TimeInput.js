@@ -18,8 +18,12 @@ const TimeInput = ({ inputTime, setInputTime, timeLabelName = "Set Time" }) => {
 
   const formatTime = (time) => {
     // Check if the time is already in mm:ss format
+
     const timePattern = /^\d{1,2}:\d{2}$/;
-    if (timePattern.test(time)) return time;
+    if (timePattern.test(time)) {
+
+      return time;
+    }
 
     const minutes = Math.floor(time / 60)
       .toString()
@@ -31,7 +35,9 @@ const TimeInput = ({ inputTime, setInputTime, timeLabelName = "Set Time" }) => {
   const handleBlur = () => {
     if (input.includes(":")) {
       const [minutes, seconds] = input.split(":").map(Number);
-      if (minutes <= 59 && seconds <= 60) {
+      if (minutes <= 59) {
+        // the user has input a number of seconds larger than 60
+        // we will convert this to minutes and add this for the user
         setInput(formatTime(minutes * 60 + seconds));
       } else {
         setInput(formatTime(59 * 60 + 59));
