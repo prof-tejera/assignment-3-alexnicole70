@@ -5,14 +5,10 @@ import "./styles.css";
 import { AppContext } from "./AppContext";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Countdown, {
-  AddCountdownInput,
-} from "./components/Countdown/Countdown.js";
-import StopWatch, {
-  AddStopwatchInput,
-} from "./components/StopWatch/StopWatch.js";
-import XY, { AddXYInput, XYWithUserInput } from "./components/XY/XY";
-import Tabata, { AddTabataInput } from "./components/TABATA/TABATA";
+import Countdown from "./components/Countdown/Countdown.js";
+import StopWatch from "./components/StopWatch/StopWatch.js";
+import XY from "./components/XY/XY";
+import Tabata from "./components/TABATA/TABATA";
 
 import {
   HashRouter as Router,
@@ -25,8 +21,7 @@ import LinkButton from "./components/LinkButton/LinkButton";
 import AddButton from "./components/AddButton/AddButton";
 import ViewQueue from "./components/ViewQueue/ViewQueue";
 import TimerInfo from "./components/TimerInfo/TimerInfo";
-import { SquareButton } from "./components/SquareButton/SquareButton";
-import QueueCard from "./components/QueueCard/QueueCard";
+
 import { useSearchParams } from "react-router-dom";
 import { AddInputPanel } from "./components/AddInputPanel/AddInputPanel.js";
 
