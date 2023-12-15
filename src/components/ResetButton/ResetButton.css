@@ -1,0 +1,10 @@
+svg.reset-btn:hover circle {
+  fill: var(--color-bright-blue);
+  cursor: pointer;
+}
+
+svg.reset-btn:active circle {
+  fill: var(--color-bright-blue);
+  stroke: var(--color-bright-blue);
+  cursor: pointer;
+}

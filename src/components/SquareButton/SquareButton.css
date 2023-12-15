@@ -1,0 +1,32 @@
+.square-button {
+  display: flex;
+  margin: 0 auto;
+  padding: 0.25rem;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 2px solid var(--color-white);
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+.square-button:hover {
+  background-color: var(--color-bright-blue);
+}
+
+.square-button:active {
+  border: none;
+}
+.square-button:visited {
+  color: var(--color-white);
+}
+
+div.button-icon {
+  float: right;
+}
+
+.square-button.active {
+  background-color: var(--color-bright-blue);
+}

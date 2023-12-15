@@ -1,0 +1,46 @@
+.link-button {
+  border-radius: 0.5rem;
+  background: var(--color-bright-blue);
+  padding: 1rem;
+  text-align: center;
+  font-family: Plus Jakarta Sans;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.125rem;
+  text-decoration: none;
+  color: var(--color-white);
+  display: block;
+  width: 60vw;
+  max-width: 28rem;
+}
+
+.link-button:visited {
+  color: var(--color-white);
+}
+
+.link-button:hover {
+  background-color: var(--color-pale-blue);
+  color: var(--color-dark-blue);
+}
+
+.link-button:active {
+  background-color: transparent;
+
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+}
+
+.link-button.secondary {
+  background: var(--color-pale-blue);
+  color: var(--color-dark-blue);
+}
+
+.link-button.secondary:hover {
+  background-color: var(--color-bright-blue);
+}
+
+.link-button.secondary:active {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+}

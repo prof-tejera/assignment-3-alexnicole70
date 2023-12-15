@@ -1,0 +1,12 @@
+.round-display-container {
+  color: var(--color-white);
+}
+.round-display-container > * {
+  margin-top: 16px;
+}
+
+.round-display {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}

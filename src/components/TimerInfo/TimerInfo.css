@@ -1,0 +1,37 @@
+.timer-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.timer-info-queue {
+  border-right: 2px solid;
+  padding-right: 8px;
+}
+
+.timer-info-total {
+  padding-left: 8px;
+}
+
+.timer-info-total p:first-child {
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+.timer-info-queue p:first-child {
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+
+.timer-info-total p:last-child {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.timer-info-queue p:last-child {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}

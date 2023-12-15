@@ -1,0 +1,10 @@
+{
+    "name": "Workout Timer App",
+    "short_name": "Workout",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A workout timer app for CSCI-E39."
+    
+  }
+  

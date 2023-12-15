@@ -1,0 +1,19 @@
+svg.play-btn:hover circle {
+  fill: var(--color-white);
+  cursor: pointer;
+}
+
+svg.play-btn:hover path {
+  fill: var(--color-dark-blue);
+  stroke: var(--color-dark-blue);
+}
+
+svg.pause-btn:hover circle {
+  fill: var(--color-white);
+  cursor: pointer;
+}
+
+svg.pause-btn:hover path {
+  fill: var(--color-dark-blue);
+  stroke: var(--color-dark-blue);
+}
